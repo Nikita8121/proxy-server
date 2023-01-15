@@ -1,4 +1,5 @@
-﻿using System;
+﻿using proxy_server.Services;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,12 @@ namespace proxy_server
     /// </summary>
     public partial class App : Application
     {
+        private HttpServer _httpServer;
+
+        public App()
+        {
+            _httpServer = new HttpServer();
+            _httpServer.Start();
+        }
     }
 }
