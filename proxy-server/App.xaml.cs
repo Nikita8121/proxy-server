@@ -1,4 +1,6 @@
 ﻿using proxy_server.Services;
+using proxy_server.Stores;
+using proxy_server.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,12 +16,31 @@ namespace proxy_server
     /// </summary>
     public partial class App : Application
     {
-        private HTTPService _httpServer;
+        private readonly HTTPService _httpService;
+        private readonly NavigationStore _navigationStore;
 
         public App()
         {
-            _httpServer = new HTTPService();
-            _httpServer.Start();
+            _httpService = new HTTPService();
+            _navigationStore = new NavigationStore();
+        }
+
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            _navigationStore.CurrentViewModel = CreateHomeViewModel();
+
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MainViewModel(_navigationStore)
+            };
+            MainWindow.Show();
+            base.OnStartup(e);
+        }
+
+        private HomeViewModel CreateHomeViewModel()
+        {
+            return new HomeViewModel(_httpService);
         }
     }
 }
