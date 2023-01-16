@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace proxy_server.ViewModels
 {
-    public class HomeViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
-
     }
 }

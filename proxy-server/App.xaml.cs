@@ -14,11 +14,11 @@ namespace proxy_server
     /// </summary>
     public partial class App : Application
     {
-        private HttpServer _httpServer;
+        private HTTPService _httpServer;
 
         public App()
         {
-            _httpServer = new HttpServer();
+            _httpServer = new HTTPService();
             _httpServer.Start();
         }
     }

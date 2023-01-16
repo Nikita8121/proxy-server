@@ -4,11 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:proxy_server" xmlns:views="clr-namespace:proxy_server.Views"
+        xmlns:vms="clr-namespace:proxy_server.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="20 10" MaxWidth="600">
-            <views:HomeView  />
+            <Grid.Resources>
+                <DataTemplate DataType="{x:Type vms:HomeViewModel}">
+                    <views:HomeView />
+                </DataTemplate>
+            </Grid.Resources>
+
+            <ContentControl  Content="{Binding CurrentViewModel}"  />
         </Grid>
     </ScrollViewer>
 </Window>
